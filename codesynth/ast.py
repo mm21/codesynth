@@ -138,9 +138,8 @@ class BaseBranchNode(BaseNode, ABC):
 #   https://github.com/pydantic/pydantic/discussions/4563#discussioncomment-3727730
 class BaseBlockNode(BaseBranchNode):
     """
-    Base representation of an optional prolog/epilog with
-    one or more child nodes, optionally surrounded by a
-    prolog and/or epilog which constitute a "block".
+    Base representation of an optional prolog/epilog surrounding
+    child nodes, creating a "block".
 
     [prolog]
         [children]
@@ -152,10 +151,10 @@ class BaseBlockNode(BaseBranchNode):
     _epilog: BaseNode | None = PrivateAttr(default=None)
 
     def visit(self) -> list[str]:
-        return self._render_end_node(self._prolog)
+        return self._render_marker_node(self._prolog)
 
     def depart(self) -> list[str]:
-        return self._render_end_node(self._epilog)
+        return self._render_marker_node(self._epilog)
 
-    def _render_end_node(self, node: BaseNode | None) -> list[str]:
+    def _render_marker_node(self, node: BaseNode | None) -> list[str]:
         return node._render_lines() if node is not None else []
