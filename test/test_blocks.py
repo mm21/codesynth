@@ -9,8 +9,8 @@ from codesynth.lib import (
 )
 
 
-@mark.output_filename("foo.c")
-def test_braces(comparison_files: ComparisonFiles):
+@mark.powerpack_compare_file("foo.c")
+def test_braces(powerpack_comparison_files: ComparisonFiles):
     """
     Generate C function with an "if" check.
     """
@@ -28,4 +28,4 @@ def test_braces(comparison_files: ComparisonFiles):
         ],
     )
 
-    check_node(foo, comparison_files)
+    check_node(foo, powerpack_comparison_files)

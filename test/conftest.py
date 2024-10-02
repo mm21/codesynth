@@ -22,5 +22,5 @@ def check_node(node: BaseNode, comparison_files: ComparisonFiles):
     Convenience function to render provided node and check it against
     the corresponding compare file.
     """
-    node.render_file(comparison_files.output_file)
+    node.render_file(comparison_files.build_file)
     compare_files(comparison_files)
